@@ -59,3 +59,19 @@ window.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".halo--enter")?.classList.add("play");
   renderHome();
 });
+
+let lastScrollY = 0;
+const halo = document.querySelector(".halo--enter");
+
+window.addEventListener("scroll", () => {
+  if (!halo) return;
+  const currentY = window.scrollY;
+  if (currentY > lastScrollY + 5) {
+    halo.classList.remove("visible");
+    halo.classList.add("hidden");
+  } else if (currentY < lastScrollY - 5) {
+    halo.classList.remove("hidden");
+    halo.classList.add("visible");
+  }
+  lastScrollY = currentY;
+});
