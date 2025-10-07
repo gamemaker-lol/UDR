@@ -26,7 +26,6 @@ let resizeObserver;
 function fitToViewport() {
   const wrap = document.getElementById("scale-wrap");
   if (!wrap) return;
-
   const container = document.querySelector(".container");
   const padding = 24;
   const minScale = 0.8;
@@ -36,15 +35,12 @@ function fitToViewport() {
     const containerRect = container.getBoundingClientRect();
     const availW = containerRect.width - padding * 2;
     const availH = containerRect.height - padding * 2;
-
     wrap.style.transform = "translateY(0) scale(1)";
     const contentRect = wrap.getBoundingClientRect();
     const contentW = contentRect.width;
     const contentH = contentRect.height;
-
     let scale = Math.min(availW / contentW, availH / contentH);
     scale = Math.max(minScale, Math.min(maxScale, scale));
-
     wrap.style.transform = `translateY(0) scale(${Number.isFinite(scale) ? scale : 1})`;
   };
 
@@ -60,5 +56,6 @@ function fitToViewport() {
 window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btn-home")?.addEventListener("click", renderHome);
   document.querySelector(".topbar--enter")?.classList.add("play");
+  document.querySelector(".halo--enter")?.classList.add("play");
   renderHome();
 });
