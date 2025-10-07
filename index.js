@@ -56,7 +56,8 @@ function fitToViewport() {
 window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btn-home")?.addEventListener("click", renderHome);
   document.querySelector(".topbar--enter")?.classList.add("play");
-  document.querySelector(".halo--enter")?.classList.add("play");
+  const haloEl = document.querySelector(".halo--enter");
+haloEl?.classList.add("play", "visible");
   renderHome();
 });
 
