@@ -2,12 +2,15 @@ function renderHome() {
   const app = document.getElementById("app");
   app.innerHTML = `
     <div class="scale-wrap" id="scale-wrap">
-      <section class="card center" aria-labelledby="home-title">
+      <section class="card" aria-labelledby="home-title">
         <h1 id="home-title" class="h1">Something overpowered awaits</h1>
         <p class="subtle-strong">..for the UBG community.</p>
       </section>
     </div>
   `;
+  requestAnimationFrame(() => {
+    document.querySelector(".scale-wrap")?.classList.add("play");
+  });
   fitToViewport();
   markHomeActive(true);
 }
@@ -15,11 +18,8 @@ function renderHome() {
 function markHomeActive(isActive) {
   const btn = document.getElementById("btn-home");
   if (!btn) return;
-  if (isActive) {
-    btn.setAttribute("aria-current", "page");
-  } else {
-    btn.removeAttribute("aria-current");
-  }
+  if (isActive) btn.setAttribute("aria-current", "page");
+  else btn.removeAttribute("aria-current");
 }
 
 let resizeObserver;
@@ -29,15 +29,15 @@ function fitToViewport() {
 
   const container = document.querySelector(".container");
   const padding = 24;
-  const minScale = 0.75;
-  const maxScale = 1.35;
+  const minScale = 0.8;
+  const maxScale = 1.4;
 
   const measureAndScale = () => {
     const containerRect = container.getBoundingClientRect();
     const availW = containerRect.width - padding * 2;
     const availH = containerRect.height - padding * 2;
 
-    wrap.style.transform = "scale(1)";
+    wrap.style.transform = "translateY(0) scale(1)";
     const contentRect = wrap.getBoundingClientRect();
     const contentW = contentRect.width;
     const contentH = contentRect.height;
@@ -45,7 +45,7 @@ function fitToViewport() {
     let scale = Math.min(availW / contentW, availH / contentH);
     scale = Math.max(minScale, Math.min(maxScale, scale));
 
-    wrap.style.transform = `scale(${Number.isFinite(scale) ? scale : 1})`;
+    wrap.style.transform = `translateY(0) scale(${Number.isFinite(scale) ? scale : 1})`;
   };
 
   measureAndScale();
@@ -58,8 +58,7 @@ function fitToViewport() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("btn-home")?.addEventListener("click", () => {
-    renderHome();
-  });
+  document.getElementById("btn-home")?.addEventListener("click", renderHome);
+  document.querySelector(".topbar--enter")?.classList.add("play");
   renderHome();
 });
