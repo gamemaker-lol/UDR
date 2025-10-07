@@ -6,6 +6,7 @@ function renderHome() {
         <h1 id="home-title" class="h1">Something overpowered awaits</h1>
         <p class="subtle-strong">..for the UBG community.</p>
       </section>
+      <img class="home-logo" src="/logo/UDR.png" alt="UDR logo">
     </div>
   `;
   requestAnimationFrame(() => {
