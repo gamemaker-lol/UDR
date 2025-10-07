@@ -14,7 +14,9 @@ html, body {
   margin: 0;
   background: radial-gradient(1200px 600px at 50% -10%, rgba(191,198,210,.07), transparent 60%), var(--bg);
   color: var(--fg);
-  font: 500 16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .container{
@@ -24,6 +26,7 @@ html, body {
   display: grid;
   place-items: center;
   padding: 20px 0 64px;
+  transform: translateY(-6vh);
 }
 
 .topbar{
@@ -34,6 +37,8 @@ html, body {
   border-radius: var(--radius);
   background: rgba(255,255,255,0.02);
   box-shadow: var(--shadow-neon);
+  opacity: 0;
+  transform: translateY(-40px);
 }
 .topbar__inner{
   display: flex;
@@ -50,6 +55,14 @@ html, body {
   padding: 8px 12px;
   border-radius: 10px;
   cursor: pointer;
+  transition: box-shadow .2s ease, border-color .2s ease, transform .06s ease;
+}
+.topbar__title:hover{
+  border-color: var(--neon);
+  box-shadow: var(--shadow-neon);
+}
+.topbar__title:active{
+  transform: translateY(1px);
 }
 .topbar__title[aria-current="page"]{
   border-color: var(--neon);
@@ -65,15 +78,15 @@ html, body {
 }
 
 .h1{
-  font-size: clamp(26px, 4.2vw, 48px);
-  line-height: 1.15;
-  margin: 0 0 6px 0;
+  font-size: clamp(28px, 5vw, 52px);
+  line-height: 1.12;
+  margin: 0 0 8px 0;
   font-weight: 800;
 }
 .subtle-strong{
   margin: 0;
   color: var(--muted);
-  font-size: clamp(14px, 2vw, 18px);
+  font-size: clamp(14px, 2.1vw, 18px);
   font-weight: 700;
 }
 
@@ -87,4 +100,22 @@ html, body {
 .scale-wrap{
   transform-origin: center center;
   will-change: transform;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.topbar--enter.play {
+  animation: dropIn .6s cubic-bezier(.22,1,.36,1) forwards;
+}
+.scale-wrap.play {
+  animation: riseIn .65s cubic-bezier(.22,1,.36,1) .12s forwards;
 }
