@@ -148,7 +148,6 @@ html, body {
   margin: clamp(40px, 6vh, 70px) auto 0;
   width: clamp(160px, 28vw, 360px);
   height: auto;
-  border-radius: 175px;
   opacity: .95;
   filter:
     drop-shadow(0 0 10px rgba(191,198,210,.28))
