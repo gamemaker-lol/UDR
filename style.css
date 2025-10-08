@@ -145,9 +145,10 @@ html, body {
 
 .home-logo{
   display: block;
-  margin: clamp(14px, 2.5vw, 22px) auto 0;
+  margin: clamp(40px, 6vh, 70px) auto 0;
   width: clamp(160px, 28vw, 360px);
   height: auto;
+  border-radius: 175px;
   opacity: .95;
   filter:
     drop-shadow(0 0 10px rgba(191,198,210,.28))
